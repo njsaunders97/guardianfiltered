@@ -51,7 +51,7 @@ The project will be tracked in the [GuardianFiltered Github Project](https://git
 -   JavaScript
 -   React
 -   Redux
--   Jest/Enzyme
+-   Jest/Enzyme (NOTE: support for Enzyme is dead - boo Codecademy - with this project we will instead use RTL)
 -   Selenium OR Cypress
 -   Git and GitHub
 -   Command line and file navigation
@@ -65,7 +65,7 @@ The project will be tracked in the [GuardianFiltered Github Project](https://git
 A loose initial plan for the app build:
 
  - Render non-functional basic desktop and mobile homepages in React, according to the wireframes, without any dynamic React/Redux or testing.
- - Make the app dynamic with React/Redux, start to implement unit/integration tests with Jest/Enzyme as I go. This means connecting the components for:
+ - Make the app dynamic with React/Redux, start to implement unit/integration tests with Jest/RTL as I go. This means connecting the components for:
 	 - **NavBar**, parent to:
 		 - Title
 		 - *SearchBar*
