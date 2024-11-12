@@ -10,6 +10,16 @@
         @apply font-merriweather text-base font-thin text-blue-400;
     }
     .searchbar {
-        @apply p-2 px-20 rounded-xl font-roboto font-light border-blue-950;
+        @apply rounded-xl font-roboto font-light bg-neutral-50 border-blue-950;
     }
 }
+
+@layer utilities {
+    .centerline {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 1px;
+    }
+  }
