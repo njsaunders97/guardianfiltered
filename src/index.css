@@ -6,13 +6,23 @@
     .heading-1 {
         @apply font-merriweather text-3xl;
     }
+    .heading-1-phone {
+        @apply font-merriweather text-xl;
+    }
+    .heading-1-tablet {
+        @apply font-merriweather text-2xl;
+    }
     .heading-2 {
         @apply font-merriweather text-base font-thin text-blue-400;
     }
     .searchbar {
         @apply rounded-xl font-roboto font-light bg-neutral-50 border-blue-950;
     }
+    .searchbar-phone {
+        @apply rounded-xl font-roboto font-light text-sm bg-neutral-50 border-blue-950;
+    }
 }
+
 
 @layer utilities {
     .centerline {
