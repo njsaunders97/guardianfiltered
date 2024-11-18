@@ -6,7 +6,7 @@ function App() {
   return (
     <div className='flex'>
       <NavBar />
-      <Feed />
+      {/* <Feed /> */}
     </div>
   );
 }
