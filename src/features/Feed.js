@@ -4,10 +4,9 @@ import Article from './Article';
 
 function Feed() {
     return (
-        <div className="flex justify-center items-center h-screen w-screen
-                         bg-neutral-100
+        <div className="
                         ">
-            <Article />
+            {/* <Article /> */}
         </div>
     )
 }

@@ -4,7 +4,7 @@ import Feed from '../features/Feed';
 
 function App() {
   return (
-    <div className='flex'>
+    <div className="">
       <NavBar />
       {/* <Feed /> */}
     </div>
