@@ -3,6 +3,9 @@
 @tailwind utilities;
 
 @layer components {
+    .article-text {
+        @apply font-merriweather text-sm opacity-50;
+    }
     .heading-1 {
         @apply font-merriweather text-3xl;
     }
@@ -18,5 +21,11 @@
     .searchbar {
         @apply rounded-xl font-roboto font-light bg-neutral-50 border-blue-950;
     }
-}
+    .button-yellow {
+        @apply pointer-events-auto rounded-md shadow-sm font-merriweather text-xs p-2 w-28 text-blue-950 bg-yellow-300;
+    }
+    .button-blue {
+        @apply pointer-events-auto rounded-md shadow-sm font-merriweather text-xs p-2 w-28 text-white bg-blue-400;
+    }
+};
 
