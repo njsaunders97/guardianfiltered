@@ -3,21 +3,23 @@ import { FaFilter } from 'react-icons/fa';
 
 function NavBar() {
     return (
-        <div className="fixed w-full top-0 left-0 right-0"> {/* NavBar Container */}
+        <div className="fixed w-full top-0 left-0 right-0 z-10 
+                        
+                        "> {/* NavBar Container */}
             <header className="pointer-events-auto border-solid border-0 border-b 
                                 px-4
-                                border-neutral-100 bg-neutral-100">
+                                border-white bg-white">
                 <nav className="flex items-center
                                 h-[75px]
                                 ">
                     <div className="flex items-center
                                     
                                     ">
-                        <h1 className="heading-1 hidden lg:flex">
+                        <h1 className="heading-2 hidden lg:flex">
                             <span className="text-blue-950">Guardian</span>
                             <span className="text-blue-400">Filtered</span>
                         </h1>
-                        <h1 className="heading-1-tablet lg:hidden">
+                        <h1 className="heading-2-tablet lg:hidden">
                             <span className="text-blue-950">G</span>
                             <span className="text-blue-400">F</span>
                         </h1>
@@ -45,7 +47,7 @@ function NavBar() {
                         <div className="flex items-center 
                                         h-[40px]
                                         ">
-                            <span className="heading-2 hidden lg:flex lg:mr-2">Filter by category</span>
+                            <h3 className="heading-3 hidden lg:flex lg:mr-2">Filter by category</h3>
                             <span className="md:mr-2 hover:scale-105 hover:opacity-100 opacity-60 transition-all cursor-pointer ease-linear"><NavBarIcon icon={<FaFilter size="11" />} /></span>
                         </div>
                     </div>

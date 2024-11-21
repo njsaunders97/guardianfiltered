@@ -5,8 +5,12 @@ import Feed from '../features/Feed';
 function App() {
   return (
     <div className="">
-      <NavBar />
-      {/* <Feed /> */}
+      <div>
+        <NavBar />
+      </div>
+      <div>
+        <Feed />
+      </div>
     </div>
   );
 }
