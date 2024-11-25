@@ -48,7 +48,7 @@ function NavBar() {
                                         h-[40px]
                                         ">
                             <h3 className="heading-3 hidden lg:flex lg:mr-2">Filter by category</h3>
-                            <span className="md:mr-2 hover:scale-105 hover:opacity-100 opacity-80 transition-all cursor-pointer ease-linear"><FilterIcon icon={<FaFilter size="11" />} /></span>
+                            <span className="md:mr-2 text-blue-950 hover:opacity-100 opacity-90 transition-all cursor-pointer ease-linear"><FilterIcon icon={<FaFilter size="11" />} /></span>
                         </div>
                     </div>
                 </nav>
