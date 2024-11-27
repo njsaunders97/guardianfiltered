@@ -1,6 +1,5 @@
 import React from 'react';
-import ArticleResults from '../features/ArticleResults';
-import Article from './Article';
+import Article from '../Article/Article';
 import { MdExpandCircleDown } from 'react-icons/md';
 
 function Feed() {

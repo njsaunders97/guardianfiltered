@@ -1,7 +1,10 @@
 import React from 'react';
 import { MdCancel } from 'react-icons/md';
+import { useState } from 'react';
 
 function FilterDropdown() {
+    const [isOpen, setIsOpen] = useState();
+
     return (
         <div className="flex w-full top-20 fixed
                         h-20 z-10 -mt-1

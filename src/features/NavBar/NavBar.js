@@ -1,7 +1,8 @@
 import React from 'react';
 import { FaFilter } from 'react-icons/fa';
+import SearchBar from '../SearchBar/SearchBar';
 
-function NavBar() {
+function NavBar({onSearchBarSubmit }) {
     return (
         <div className="fixed w-full top-0 left-0 right-0 z-10 
                         
@@ -27,20 +28,9 @@ function NavBar() {
                     <div className="flex items-center justify-stretch flex-1
                                     h-[40px] lg:-ml-7 md:ml-[20px]
                                     ">
-                        <div className="flex w-full
-                                        ">
-                            <div className="flex w-full justify-center md:mx-auto">
-                                <form className="flex">
-                                    <input
-                                    className="searchbar text-center lg:w-96 md:w-60 py-2"
-                                    name="query"
-                                    autocomplete="off"
-                                    placeholder="Scour the archives..."
-                                    >
-                                    </input>
-                                </form>
-                            </div>
-                        </div>
+                        <SearchBar
+                        onSearchBarSubmit={onSearchBarSubmit} // prop drilling to SearchBar
+                        />
                     </div>
                     <div className="flex items-center
                                     md:pl-6 pl-3">
