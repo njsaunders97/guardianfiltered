@@ -2,25 +2,35 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import SearchBar from '../SearchBar/SearchBar';
 import React from 'react';
+import { Provider, useDispatch } from 'react-redux';
+import { store } from '../../app/store';
 
-// RENDERING SEARCHBAR
+// Rendering SearchBar
 
 describe("SearchBar rendering", () => {
   it('renders the SearchBar component', () => {
-    render(<SearchBar />);
+    render(
+      <Provider store={store}>
+        <SearchBar />
+      </Provider>
+    );
     const searchInput = screen.getByPlaceholderText(/scour the archives.../i);
     expect(searchInput).toBeInTheDocument();
   });
 });
 
-// USER INPUT AND SEARCH SUBMISSION
+// User input and search submission
 
 describe("SearchBar user input changes and submission completes", () => {
   it('updates the SearchBar placeholder value according to user input', () => {
     // ARRANGE
     // Renders SearchBar so it has something to test
     // Finds the targeted element via this particular matcher below
-    render(<SearchBar />);
+    render(
+      <Provider store={store}>
+        <SearchBar />
+      </Provider>
+    );
     const searchBarInput = screen.getByPlaceholderText(/scour the archives.../i);
 
     // ACT
@@ -36,7 +46,11 @@ describe("SearchBar user input changes and submission completes", () => {
   it('calls the submission handler when a user submits the form via Enter', () => {
     // ARRANGE
     const onSearchBarSubmit = jest.fn();
-    render(<SearchBar onSearchBarSubmit={onSearchBarSubmit} />);
+    render(
+      <Provider store={store}>
+        <SearchBar onSearchBarSubmit={onSearchBarSubmit} />
+      </Provider>
+    );
     const searchBarInput = screen.getByPlaceholderText(/scour the archives.../i);
     
     // ACT
