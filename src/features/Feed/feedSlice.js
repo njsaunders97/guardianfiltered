@@ -5,7 +5,7 @@ const feedSlice = createSlice({
     initialState: {},
     reducers: {
         setFeed: (state, action) => {
-            state.query = action.payload;
+            
         },
     },
 });

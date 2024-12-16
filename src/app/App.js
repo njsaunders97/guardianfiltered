@@ -5,9 +5,10 @@ import Footer from '../features/Footer/Footer';
 import NavBar from '../features/NavBar/NavBar';
 import { setSearchQuery } from '../features/SearchBar/searchBarSlice';
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 function App() {
+  const query = useSelector(state => state.query);
 
 // <<<<<<<< SEARCHBAR/SEARCH RESULTS >>>>>>>> //
 
@@ -29,10 +30,10 @@ function App() {
 
     try {
       console.log(apiKey);
-      console.log(setSearchQuery());
+      console.log(query);
 
       const response = await fetch(
-        `https://content.guardianapis.com/search?q=${setSearchQuery}`, 
+        `https://content.guardianapis.com/search?q=${query}`, 
         {
           headers: {
             'Authorisation': `${apiKey}`,
