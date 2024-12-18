@@ -4,11 +4,20 @@ import FilterDropdown from '../features/FilterDropdown/FilterDropdown';
 import Footer from '../features/Footer/Footer';
 import NavBar from '../features/NavBar/NavBar';
 import { setSearchQuery } from '../features/SearchBar/searchBarSlice';
-import React from 'react';
+import { setFeed } from '../features/Feed/feedSlice';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import handlers from '../mocks/handlers';
 
 function App() {
-  const query = useSelector(state => state.query);
+  const query = useSelector(state => state.searchBar.query);
+  const feed = useSelector(state => state.feed);
+  const dispatch = useDispatch();
+
+  // ensures that the most current query is registered in state
+  useEffect(() => {
+    console.log(`Current query: ${query}`);
+  }, [query]);
 
 // <<<<<<<< SEARCHBAR/SEARCH RESULTS >>>>>>>> //
 
@@ -20,32 +29,34 @@ function App() {
   // updates, rendering search results etc. 
   function handleSearchBarSubmit(e) {
     e.preventDefault();
-    fetchSearchResults();
-    console.log('Called fetchSearchResults');
+    fetchSearchResults(dispatch);
+    //console.log('Called fetchSearchResults');
   }; 
 
-   async function fetchSearchResults(e) {
-    const apiKey = "";
-   // const dispatch = useDispatch();
+  async function fetchSearchResults() {
+    const apiKey = "d53eea4a-037a-4040-900e-389d2a2166b9";
 
     try {
-      console.log(apiKey);
+      /* console.log(apiKey);
       console.log(query);
+      console.log(feed); */
 
       const response = await fetch(
-        `https://content.guardianapis.com/search?q=${query}`, 
+        `https://content.guardianapis.com/search?q=${query}&api-key=${apiKey}`, 
         {
           headers: {
-            'Authorisation': `${apiKey}`,
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
           }
         }
       );
 
+      // console.log(feed);
+
       if(response.ok) {
+        dispatch(setFeed([]));
         const data = await response.json();
         console.log('response data: ', data);
-       // dispatch(setSearchResults(data));
+        dispatch(setFeed(data));
       } else {
         console.error('There was an error fetching the search results: ', response.status);
       }
@@ -61,7 +72,7 @@ function App() {
         onSearchBarSubmit={handleSearchBarSubmit}
         />
         <FilterDropdown />
-        <Feed />
+        <Feed feed={feed}/>
         <Footer />
     </div>
   );

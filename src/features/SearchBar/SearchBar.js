@@ -1,15 +1,12 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setSearchQuery } from './searchBarSlice';
-import store from '../../app/store';
 
 function SearchBar({ onSearchBarSubmit }) {
     const dispatch = useDispatch();
-    const query = useSelector(state => state.query);
     const handleKeyDown = (e) => {
         if (e.key === 'Enter') {
             dispatch(setSearchQuery(e.target.value));
-            console.log(query);
         }
     };
 

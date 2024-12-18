@@ -1,9 +1,8 @@
 import React from 'react';
 import ArticleList from '../ArticleList/ArticleList';
-import Article from '../Article/Article';
 import { MdExpandCircleDown } from 'react-icons/md';
 
-function Feed() {
+function Feed({ feed }) {
     return (
         <div className="bg-neutral-100 w-full h-full
                         opacity-60
@@ -11,7 +10,7 @@ function Feed() {
             <div className="grid lg:grid-cols-[1fr,minmax(768px,1024px),1fr] md:grid-cols-[1fr,8fr,1fr] sm:grid-cols-[1fr,8fr,1fr]"> {/* Feed Grid */}
                 <div className="col-start-2 col-end-3">
                     <div className="pt-32">
-                        <ArticleList />
+                        <ArticleList feed={feed}/>
                         <div className="flex top-4 justify-center
                                     -mt-2 mb-8
                                     "> {/* ShowMoreResults Container */}

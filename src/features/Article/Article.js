@@ -1,28 +1,27 @@
 import React from 'react';
-import { FaComment, FaShare } from 'react-icons/fa';
 import { MdExpandCircleDown, MdArticle, MdComment, MdIosShare} from "react-icons/md";
 
-function Article() {
+function Article({ article }) {
     return (
         <div className="relative text-center
                         rounded-md shadow-sm bg-white
-                        h-full py-10 mx-2
+                        h-full py-10 mx-2 my-10
                         ">
             <div className="grid grid-cols-7">
                 <div className="p-0">
                     <button className="hover:opacity-100 opacity-95 transition-all cursor-pointer ease-linear
                                   text-yellow-300
                                  "><CommentCountIcon icon={<MdComment size="34" />} /></button>
-                    <span className="grid row-start-2 heading-3 -mt-2">23</span>
+                    <span className="grid row-start-2 heading-3 -mt-2">{article.commentCount}</span>
                 </div>
                 <div className="grid col-span-5">
                     <div className="grid grid-cols-5">
                         <div className="flex justify-start col-span-5">
-                            <h1 className="heading-1 text-blue-950">Headline</h1>
+                            <h1 className="heading-1 text-blue-950">{article.webTitle}</h1>
                         </div>
                         <h3 className="flex justify-start col-span-2
                                         heading-3
-                                        ">Author</h3>
+                                        ">{article.author}</h3>
                         <div className="flex justify-center col-span-5 
                                         mt-3
                                         ">
@@ -31,7 +30,7 @@ function Article() {
                         <div className="text-justify article-text
                                         line-clamp-4 col-span-5 mb-6 mt-3
                                         ">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer id viverra nunc, id imperdiet est. Vestibulum ut tortor eget ex luctus aliquet eu vel diam. Nulla viverra et leo eu rutrum. Integer facilisis, massa in efficitur convallis, massa ligula lobortis dolor, quis vehicula ligula ex sed est. Vivamus eleifend bibendum mi nec pharetra. Duis porttitor vulputate eros eget scelerisque. Fusce sodales sit amet ipsum nec finibus. Maecenas porttitor ex ut velit tempus pretium. Praesent feugiat viverra mi, ut dictum ante feugiat ac. Sed non libero rhoncus, tempor arcu id, viverra lacus. Donec vitae efficitur sem. Donec egestas tortor in quam semper, sed semper lectus dapibus.</p>
+                            <p>{article.articleContent}.</p>
                         </div>
                         <div className="flex col-span-5 justify-between">
                             <button className="md:flex hidden items-center justify-evenly button-yellow flex-shrink

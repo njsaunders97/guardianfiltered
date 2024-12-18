@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import searchBarReducer from '../features/SearchBar/searchBarSlice';
+import feedReducer from '../features/Feed/feedSlice';
 
 const store = configureStore({
     reducer:{
-        searchBarReducer: searchBarReducer,
+        searchBar: searchBarReducer,
+        feed: feedReducer,
     }
 });
 
