@@ -1,5 +1,6 @@
 import React from 'react';
-import { MdExpandCircleDown, MdArticle, MdComment, MdIosShare} from "react-icons/md";
+import { MdExpandCircleDown, MdComment, MdIosShare} from "react-icons/md";
+import { GrArticle } from 'react-icons/gr';
 
 function Article({ article }) {
     return (
@@ -30,7 +31,7 @@ function Article({ article }) {
                         <div className="text-justify article-text
                                         line-clamp-4 col-span-5 mb-6 mt-3
                                         ">
-                            <p>{article.articleContent}.</p>
+                            <p>{article.articleContent}</p>
                         </div>
                         <div className="flex col-span-5 justify-between">
                             <button className="md:flex hidden items-center justify-evenly button-yellow flex-shrink
@@ -38,13 +39,13 @@ function Article({ article }) {
                                                col-span-1 
                                                 ">
                         
-                                <span className="">Go to Article</span>
-                                <span><ArticleIcon icon={<MdArticle size="18"/>}/></span>
+                                <span className="mr-1">Go to Article</span>
+                                <span><ArticleIcon icon={<GrArticle size="18"/>}/></span>
                             </button>
                             <button className="md:hidden flex items-center justify-evenly button-yellow flex-shrink
                                                hover:opacity-100 opacity-90 transition-all cursor-pointer ease-linear 
                                                col-span-1 w-14                                                     ">
-                                <span><ArticleIcon icon={<MdArticle size="18"/>}/></span>
+                                <span><ArticleIcon icon={<GrArticle size="18"/>}/></span>
                             </button>
                             <button className="md:flex hidden items-center justify-evenly button-blue
                                                hover:opacity-100 opacity-95 transition-all cursor-pointer ease-linear 

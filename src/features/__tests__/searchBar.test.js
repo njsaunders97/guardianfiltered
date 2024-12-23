@@ -2,61 +2,42 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import SearchBar from '../SearchBar/SearchBar';
 import React from 'react';
-import { Provider, useDispatch } from 'react-redux';
+import { Provider } from 'react-redux';
 import { store } from '../../app/store';
+import { fetchSearchResults } from '../../app/App';
 
-// Rendering SearchBar
+// <<<<<< SEARCHBAR INTEGRATION >>>>>>
 
-describe("SearchBar rendering", () => {
-  it('renders the SearchBar component', () => {
-    render(
-      <Provider store={store}>
-        <SearchBar />
-      </Provider>
-    );
-    const searchInput = screen.getByPlaceholderText(/scour the archives.../i);
-    expect(searchInput).toBeInTheDocument();
-  });
-});
+// Test steps:
+// 1. Render SearchBar in test container [x]
+// 2. Simulate querying in the input field [x]
+// 3. Trigger form submission [x]
+// 4. Verify fetch is called with the correct query, and that `feed` state updates
+// 5. Check that articles are rendered properly in the feed according to mocked API data.
+// 6. Handles errors with the fetch request appropriately.
 
-// User input and search submission
+// The test will use:
+// RTL for rendering
+// `Provider` for testing.
+// MSW for a mocked API response.
 
-describe("SearchBar user input changes and submission completes", () => {
-  it('updates the SearchBar placeholder value according to user input', () => {
-    // ARRANGE
-    // Renders SearchBar so it has something to test
-    // Finds the targeted element via this particular matcher below
-    render(
-      <Provider store={store}>
-        <SearchBar />
-      </Provider>
-    );
-    const searchBarInput = screen.getByPlaceholderText(/scour the archives.../i);
-
-    // ACT
-    // Fires a user typing event, typing the value 'test' into the target (searchBarInput) 
-    userEvent.type(searchBarInput, 'test');
-
-    // ASSERT
-    // Expects the value of that searchBarInput to then become 'test'
-    expect(searchBarInput.value).toBe('test');
-
-  });
-
-  it('calls the submission handler when a user submits the form via Enter', () => {
+describe("SearchBar query and call to API", () => {
+  it("renders SearchBar, accepts user query, calls submission handler, API fetches", () => {
     // ARRANGE
     const onSearchBarSubmit = jest.fn();
     render(
       <Provider store={store}>
-        <SearchBar onSearchBarSubmit={onSearchBarSubmit} />
+        <SearchBar onSearchBarSubmit={onSearchBarSubmit}/>
       </Provider>
     );
-    const searchBarInput = screen.getByPlaceholderText(/scour the archives.../i);
-    
-    // ACT
-    userEvent.type(searchBarInput, '{enter}');
+    const searchBarInput = screen.getByPlaceholderText(/Scour the archives.../);
 
+    // ACT 
+    userEvent.type(searchBarInput, 'test');
+    userEvent.type(searchBarInput, '{enter}');
+ 
     // ASSERT
+    expect(searchBarInput.value).toBe('test');
     expect(onSearchBarSubmit).toHaveBeenCalled();
   });
 });

@@ -7,7 +7,7 @@ function ArticleList({ feed }) {
     return (
         <div>
             <div className="col-span-2 pb-14">
-                {feed.feed.map(article => (
+                {feed.feed.length > 0 ? feed.feed.map(article => (
                     <Article 
                     article={article}
                     key={article.id}
@@ -16,7 +16,9 @@ function ArticleList({ feed }) {
                     commentCount={article.commentCount}
                     webUrl={article.webUrl}
                     />
-                ))}
+                )) : 
+                null
+                }
             </div>
         </div>
     )

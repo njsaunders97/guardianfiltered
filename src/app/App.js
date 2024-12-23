@@ -1,13 +1,31 @@
 import '../index.css';
 import Feed from '../features/Feed/Feed';
+import Fallback from '../features/Fallback/Fallback';
 import FilterDropdown from '../features/FilterDropdown/FilterDropdown';
 import Footer from '../features/Footer/Footer';
 import NavBar from '../features/NavBar/NavBar';
-import { setSearchQuery } from '../features/SearchBar/searchBarSlice';
-import { setFeed } from '../features/Feed/feedSlice';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import handlers from '../mocks/handlers';
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { setFeed } from '../features/Feed/feedSlice';
+
+// THUNKS/MIDDLEWARE
+
+export const fetchSearchResults = createAsyncThunk(
+  'feed/setFeed',
+  async(query, thunkAPI) => {
+   try { 
+      const response = await fetch(`https://content.guardianapis.com/search?q=${query}&api-key=d53eea4a-037a-4040-900e-389d2a2166b9`);
+      if(!response.ok) {
+        return thunkAPI.rejectWithValue('Failed to fetch data');
+      }
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue('An error occurred');
+    }
+  }
+);
 
 function App() {
   const query = useSelector(state => state.searchBar.query);
@@ -29,42 +47,10 @@ function App() {
   // updates, rendering search results etc. 
   function handleSearchBarSubmit(e) {
     e.preventDefault();
-    fetchSearchResults(dispatch);
+    dispatch(setFeed([]));
+    dispatch(fetchSearchResults(query));
     //console.log('Called fetchSearchResults');
   }; 
-
-  async function fetchSearchResults() {
-    const apiKey = "d53eea4a-037a-4040-900e-389d2a2166b9";
-
-    try {
-      /* console.log(apiKey);
-      console.log(query);
-      console.log(feed); */
-
-      const response = await fetch(
-        `https://content.guardianapis.com/search?q=${query}&api-key=${apiKey}`, 
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          }
-        }
-      );
-
-      // console.log(feed);
-
-      if(response.ok) {
-        dispatch(setFeed([]));
-        const data = await response.json();
-        console.log('response data: ', data);
-        dispatch(setFeed(data));
-      } else {
-        console.error('There was an error fetching the search results: ', response.status);
-      }
-
-    } catch (error) {
-      console.error('Network/fetch error: ', error);
-    }
-  };
 
   return (
     <div className="">
@@ -72,7 +58,7 @@ function App() {
         onSearchBarSubmit={handleSearchBarSubmit}
         />
         <FilterDropdown />
-        <Feed feed={feed}/>
+        {query ? <Feed feed={feed}/> : <Fallback />}
         <Footer />
     </div>
   );

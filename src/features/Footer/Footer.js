@@ -21,11 +21,6 @@ function Footer() {
                                 mt-5
                                 ">
                     <h3 className="heading-3">About Us</h3>
-                    <div>
-                        <button className="footer-text opacity-85 hover:opacity-100">What is Guardian</button>
-                        <button className="footer-text opacity-85 hover:opacity-100 text-blue-400">Filtered</button>
-                        <button className="footer-text opacity-85 hover:opacity-100">?</button>
-                    </div>
                     <button className="footer-text opacity-85 hover:opacity-100">GitHub</button>
                 </div>
                 <div className="flex flex-col col-span-2 justify-center items-center

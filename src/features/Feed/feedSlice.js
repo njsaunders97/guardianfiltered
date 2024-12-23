@@ -1,12 +1,29 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { fetchSearchResults } from '../../app/App';
 
 const feedSlice = createSlice({
     name: 'feed',
-    initialState: { feed: [] }, // initialising an empty object to ensure consistency with the incoming metadata
+    initialState: { feed: [], isLoading: false, hasError: false }, // initialising an empty object to ensure consistency with the incoming metadata
     reducers: {
         setFeed: (state, action) => {
             state.feed = action.payload;
         },
+    },
+    extraReducers: (builder) => {
+        builder
+        .addCase(fetchSearchResults.pending, (state) => {
+            state.isLoading = true;
+            state.hasError = false;
+        })
+        .addCase(fetchSearchResults.fulfilled, (state, action) => {
+            state.feed = action.payload;
+            state.isLoading = false;
+            state.hasError = false;
+        })
+        .addCase(fetchSearchResults.rejected, (state) => {
+            state.isLoading = false;
+            state.hasError = true;
+        });
     },
 });
 
