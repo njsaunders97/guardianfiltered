@@ -4,7 +4,7 @@ import { GrArticle } from 'react-icons/gr';
 
 function Article({ article }) {
     return (
-        <div className="relative text-center
+        <div data-testid="article-element" className="relative text-center
                         rounded-md shadow-sm bg-white
                         h-full py-10 mx-2 my-10
                         ">

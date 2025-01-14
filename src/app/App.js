@@ -4,7 +4,7 @@ import Fallback from '../features/Fallback/Fallback';
 import FilterDropdown from '../features/FilterDropdown/FilterDropdown';
 import Footer from '../features/Footer/Footer';
 import NavBar from '../features/NavBar/NavBar';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { setFeed } from '../features/Feed/feedSlice';
@@ -31,6 +31,8 @@ function App() {
   const query = useSelector(state => state.searchBar.query);
   const feed = useSelector(state => state.feed);
   const dispatch = useDispatch();
+  const [ showDropdown, setShowDropdown ] = useState(false);
+  const handleToggle = useCallback(() => setShowDropdown(prevShowDropdown => !prevShowDropdown),[]);
 
   // ensures that the most current query is registered in state
   useEffect(() => {
@@ -56,8 +58,9 @@ function App() {
     <div className="">
         <NavBar
         onSearchBarSubmit={handleSearchBarSubmit}
+        onToggle={handleToggle}
         />
-        <FilterDropdown />
+        <FilterDropdown showDropdown={showDropdown} />
         {query ? <Feed feed={feed}/> : <Fallback />}
         <Footer />
     </div>
