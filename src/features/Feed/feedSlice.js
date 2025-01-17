@@ -3,7 +3,7 @@ import { fetchSearchResults } from '../../app/App';
 
 const feedSlice = createSlice({
     name: 'feed',
-    initialState: { feed: [], isLoading: false, hasError: false }, // initialising an empty object to ensure consistency with the incoming metadata
+    initialState: { feed: [], isLoading: false, hasError: false }, // initialising an empty array to ensure consistency with the incoming metadata
     reducers: {
         setFeed: (state, action) => {
             state.feed = action.payload;

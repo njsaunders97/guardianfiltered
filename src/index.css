@@ -27,6 +27,9 @@
     .button-blue {
         @apply pointer-events-auto rounded-md shadow-sm font-merriweather text-xs p-2 w-28 text-white bg-blue-400;
     }
+    .button-darkblue {
+        @apply pointer-events-auto rounded-md shadow-sm font-merriweather text-xs p-2 w-28 text-white bg-blue-950;
+    }
     .footer-text {
         @apply font-roboto font-light text-sm text-blue-950;
     }

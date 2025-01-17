@@ -11,9 +11,6 @@ import { store } from '../../app/store';
 // 1. Render SearchBar in test container [x]
 // 2. Simulate querying in the input field [x]
 // 3. Trigger form submission [x]
-// 4. Verify fetch is called with the correct query, and that `feed` state updates []
-// 5. Check that articles are rendered properly in the feed according to mocked API data []
-// 6. Handles errors with the fetch request appropriately []
 
 // The test will use:
 // RTL for rendering

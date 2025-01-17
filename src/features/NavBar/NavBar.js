@@ -1,11 +1,9 @@
 import React from 'react';
 import { FaFilter } from 'react-icons/fa';
 import SearchBar from '../SearchBar/SearchBar';
-import FilterDropdown from '../FilterDropdown/FilterDropdown';
+import FilterDropdown from '../Filters/Filters';
 
 function NavBar({ onSearchBarSubmit, onToggle }) {
-
-
     return (
         <div className="fixed w-full top-0 left-0 right-0 z-10 
                         
@@ -41,7 +39,7 @@ function NavBar({ onSearchBarSubmit, onToggle }) {
                                         h-[40px]
                                         ">
                             <h3 className="heading-3 hidden lg:flex lg:mr-2">Filter by category</h3>
-                            <button onClick={onToggle} className="md:mr-2 text-blue-950 hover:opacity-100 opacity-90 transition-all cursor-pointer ease-linear"><FilterIcon icon={<FaFilter size="11" />} /></button>
+                            <button onClick={onToggle} label="filter-button" className="md:mr-2 text-blue-950 hover:opacity-100 opacity-90 transition-all cursor-pointer ease-linear"><FilterIcon icon={<FaFilter size="11" />} /></button>
                         </div>
                     </div>
                 <FilterDropdown />

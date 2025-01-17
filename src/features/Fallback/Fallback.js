@@ -4,7 +4,7 @@ import { GrArticle } from 'react-icons/gr';
 function Fallback() {
     return (
         <div className="bg-neutral-100 w-full h-full
-                        opacity-100 min-h-[580px]
+                        opacity-100 min-h-[700px]
                         "> {/* Feed Container */}
             <div className="grid lg:grid-cols-[1fr,minmax(768px,1024px),1fr] md:grid-cols-[1fr,8fr,1fr] sm:grid-cols-[1fr,8fr,1fr]"> {/* Feed Grid */}
                 <div className="col-start-2 col-end-3">

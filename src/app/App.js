@@ -1,7 +1,7 @@
 import '../index.css';
 import Feed from '../features/Feed/Feed';
 import Fallback from '../features/Fallback/Fallback';
-import FilterDropdown from '../features/FilterDropdown/FilterDropdown';
+import Filters from '../features/Filters/Filters';
 import Footer from '../features/Footer/Footer';
 import NavBar from '../features/NavBar/NavBar';
 import React, { useEffect, useState, useCallback } from 'react';
@@ -60,7 +60,7 @@ function App() {
         onSearchBarSubmit={handleSearchBarSubmit}
         onToggle={handleToggle}
         />
-        <FilterDropdown showDropdown={showDropdown} />
+        <Filters showDropdown={showDropdown} />
         {query ? <Feed feed={feed}/> : <Fallback />}
         <Footer />
     </div>
