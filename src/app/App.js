@@ -20,16 +20,34 @@ export const fetchSearchResults = createAsyncThunk(
         return thunkAPI.rejectWithValue('Failed to fetch data');
       }
       const data = await response.json();
-      return data;
+      return data.response.results;
     } catch (error) {
       return thunkAPI.rejectWithValue('An error occurred');
     }
   }
 );
 
+export const fetchFilterResults = createAsyncThunk(
+  'feed/setFeed',
+  async(filters, thunkAPI) => {
+   try { 
+      const response = await fetch(`https://content.guardianapis.com/tags?query=${filters.join(',')}&api-key=d53eea4a-037a-4040-900e-389d2a2166b9`);
+      if(!response.ok) {
+        return thunkAPI.rejectWithValue('Failed to fetch data');
+      }
+      const data = await response.json();
+      return data.response.results;
+    } catch (error) {
+      return thunkAPI.rejectWithValue('An error occurred');
+    }
+  }
+);
+
+
 function App() {
   const query = useSelector(state => state.searchBar.query);
   const feed = useSelector(state => state.feed);
+  const filters = useSelector(state => state.filters.selectedFilters);
   const dispatch = useDispatch();
   const [ showDropdown, setShowDropdown ] = useState(false);
   const handleToggle = useCallback(() => setShowDropdown(prevShowDropdown => !prevShowDropdown),[]);
@@ -51,7 +69,7 @@ function App() {
     e.preventDefault();
     dispatch(setFeed([]));
     dispatch(fetchSearchResults(query));
-    //console.log('Called fetchSearchResults');
+    console.log('Called fetchSearchResults');
   }; 
 
   return (
@@ -61,7 +79,11 @@ function App() {
         onToggle={handleToggle}
         />
         <Filters showDropdown={showDropdown} />
-        {query ? <Feed feed={feed}/> : <Fallback />}
+        { query ? // display feed if query is present
+        <Feed 
+        feed={feed}
+        /> 
+        : <Fallback />}
         <Footer />
     </div>
   );

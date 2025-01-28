@@ -6,11 +6,18 @@ import { store } from '../app/store';
 // an aspect of testing
 
 const query = store.getState().searchBar.query;
+// console.log(query);
+const filters = store.getState().filters.selectedFilters;
+// console.log(filters);
 
 export const handlers = [
     http.get(`https://content.guardianapis.com/search?q=${query}&api-key=d53eea4a-037a-4040-900e-389d2a2166b9`, () => {
         const title = store.getState().searchBar.query;
-        return HttpResponse.json([
+        return HttpResponse.json(
+            {
+            response: {
+            status: 'ok',
+            results: [
             ...Array(10).fill({
                 id: Math.floor(Math.random() * 1000),
                 type: 'article',
@@ -20,7 +27,25 @@ export const handlers = [
                 articleContent: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer id viverra nunc, id imperdiet est. Vestibulum ut tortor eget ex luctus aliquet eu vel diam. Nulla viverra et leo eu rutrum. Integer facilisis, massa in efficitur convallis, massa ligula lobortis dolor, quis vehicula ligula ex sed est. Vivamus eleifend bibendum mi nec pharetra. Duis porttitor vulputate eros eget scelerisque. Fusce sodales sit amet ipsum nec finibus. Maecenas porttitor ex ut velit tempus pretium. Praesent feugiat viverra mi, ut dictum ante feugiat ac. Sed non libero rhoncus, tempor arcu id, viverra lacus. Donec vitae efficitur sem. Donec egestas tortor in quam semper, sed semper lectus dapibus',
                 webUrl: 'https://www.theguardian.com',
             }),
-        ]);
+        ]}});
     }),
+    http.get(`https://content.guardianapis.com/tags?query=${filters.join(',')}&api-key=d53eea4a-037a-4040-900e-389d2a2166b9`, () => {
+        const appliedFilters = store.getState().filters.selectedFilters;
+        return HttpResponse.json({
+            response: {
+                status: 'ok',
+                results: [
+                    ...Array(10).fill({
+                        id: `current tag(s): ${appliedFilters}`,
+                        webTitle: `dummy title ${appliedFilters}`,
+                        commentCount: Math.floor(Math.random() * 100),
+                        author: 'Sally Scoop',
+                        articleContent: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer id viverra nunc, id imperdiet est. Vestibulum ut tortor eget ex luctus aliquet eu vel diam. Nulla viverra et leo eu rutrum. Integer facilisis, massa in efficitur convallis, massa ligula lobortis dolor, quis vehicula ligula ex sed est. Vivamus eleifend bibendum mi nec pharetra. Duis porttitor vulputate eros eget scelerisque. Fusce sodales sit amet ipsum nec finibus. Maecenas porttitor ex ut velit tempus pretium. Praesent feugiat viverra mi, ut dictum ante feugiat ac. Sed non libero rhoncus, tempor arcu id, viverra lacus. Donec vitae efficitur sem. Donec egestas tortor in quam semper, sed semper lectus dapibus',
+                        webUrl: 'https://www.theguardian.com',
+                    }),
+                ],
+            },
+        })
+    })
 ];
 
