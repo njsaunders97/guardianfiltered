@@ -40,7 +40,7 @@ export const fetchFilterResults = createAsyncThunk(
     } catch (error) {
       return thunkAPI.rejectWithValue('An error occurred');
     }
-  }
+  } 
 );
 
 
@@ -79,7 +79,7 @@ function App() {
         onToggle={handleToggle}
         />
         <Filters showDropdown={showDropdown} />
-        { query ? // display feed if query is present
+        { feed.feed.length > 0 ? // display feed is there is data present in feed
         <Feed 
         feed={feed}
         /> 
