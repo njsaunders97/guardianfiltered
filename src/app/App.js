@@ -68,8 +68,14 @@ function App() {
   function handleSearchBarSubmit(e) {
     e.preventDefault();
     dispatch(setFeed([]));
-    dispatch(fetchSearchResults(query));
+    if (query.length > 0) {
+      dispatch(fetchSearchResults(query));
+    } else {
+      dispatch(setFeed([]));
+    }
     console.log('Called fetchSearchResults');
+    console.log(feed);
+    console.log(filters);
   }; 
 
   return (
@@ -79,9 +85,10 @@ function App() {
         onToggle={handleToggle}
         />
         <Filters showDropdown={showDropdown} />
-        { feed.feed.length > 0 ? // display feed is there is data present in feed
+        {feed.feed.length > 0 ? // display feed is there is data present in feed
         <Feed 
         feed={feed}
+        query={query}
         /> 
         : <Fallback />}
         <Footer />

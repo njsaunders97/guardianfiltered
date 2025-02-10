@@ -28,8 +28,12 @@ function Filters({ showDropdown }) {
     function handleApplyFilters() {
         console.log(filters);
         console.log('filters handled!');
-        dispatch(setFeed([]));
-        dispatch(fetchFilterResults(filters));
+        if(filters.length < 0) {
+            dispatch(setFeed([]));
+        } else {
+            dispatch(setFeed([]));
+            dispatch(fetchFilterResults(filters));
+        }
     }
 
     return (
