@@ -1,14 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { setSearchQuery } from './searchBarSlice';
 
 function SearchBar({ onSearchBarSubmit }) {
-    const dispatch = useDispatch();
-    const handleKeyDown = (e) => {
-        if (e.key === 'Enter') {
-            dispatch(setSearchQuery(e.target.value));
-        }
-    };
 
     return (
         <div className="flex w-full
