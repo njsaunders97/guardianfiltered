@@ -15,6 +15,7 @@ function ArticleList({ feed, query }) {
                     author={article.author}
                     commentCount={article.commentCount}
                     webUrl={article.webUrl}
+                    body={article.body}
                     />
                 )) : 
                 null

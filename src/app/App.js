@@ -15,7 +15,7 @@ export const fetchSearchResults = createAsyncThunk(
   'feed/setFeed',
   async(query, thunkAPI) => {
    try { 
-      const response = await fetch(`https://content.guardianapis.com/search?q=${query}&api-key=d53eea4a-037a-4040-900e-389d2a2166b9`);
+      const response = await fetch(`https://content.guardianapis.com/search?q=${query}&from-date=2025-01-01&orderBy=newest&show-fields=all&api-key=d53eea4a-037a-4040-900e-389d2a2166b9`);
       if(!response.ok) {
         return thunkAPI.rejectWithValue('Failed to fetch data');
       }
@@ -31,7 +31,7 @@ export const fetchFilterResults = createAsyncThunk(
   'feed/setFeed',
   async(filters, thunkAPI) => {
    try { 
-      const response = await fetch(`https://content.guardianapis.com/tags?query=${filters.join(',')}&api-key=d53eea4a-037a-4040-900e-389d2a2166b9`);
+      const response = await fetch(`https://content.guardianapis.com/sections?q=${filters.join(',')}&api-key=d53eea4a-037a-4040-900e-389d2a2166b9`);
       if(!response.ok) {
         return thunkAPI.rejectWithValue('Failed to fetch data');
       }

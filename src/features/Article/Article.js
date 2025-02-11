@@ -13,7 +13,7 @@ function Article({ article }) {
                     <button className="hover:opacity-100 opacity-95 transition-all cursor-pointer ease-linear
                                   text-yellow-300
                                  "><CommentCountIcon icon={<MdComment size="34" />} /></button>
-                    <span className="grid row-start-2 heading-3 -mt-2">{article.commentCount}</span>
+                    <span className="grid row-start-2 heading-3 -mt-2">{article.webUrl}</span>
                 </div>
                 <div className="grid col-span-5">
                     <div className="grid grid-cols-5">
@@ -31,17 +31,18 @@ function Article({ article }) {
                         <div className="text-justify article-text
                                         line-clamp-4 col-span-5 mb-6 mt-3
                                         ">
-                            <p>{article.maincontent}</p>
+                            <p>{article.body}</p>
                         </div>
                         <div className="flex col-span-5 justify-between">
-                            <button className="md:flex hidden items-center justify-evenly button-yellow flex-shrink
-                                               hover:opacity-100 opacity-90 transition-all cursor-pointer ease-linear 
-                                               col-span-1 
-                                                ">
-                        
-                                <span className="mr-1">Go to Article</span>
-                                <span><ArticleIcon icon={<GrArticle size="18"/>}/></span>
-                            </button>
+                            <a href={article.webUrl}>
+                                <button className="md:flex hidden items-center justify-evenly button-yellow flex-shrink
+                                                   hover:opacity-100 opacity-90 transition-all cursor-pointer ease-linear
+                                                   col-span-1
+                                                    ">
+                                    <span className="mr-1">Go to Article</span>
+                                    <span><ArticleIcon icon={<GrArticle size="18"/>}/></span>
+                                </button>
+                            </a>
                             <button className="md:hidden flex items-center justify-evenly button-yellow flex-shrink
                                                hover:opacity-100 opacity-90 transition-all cursor-pointer ease-linear 
                                                col-span-1 w-14                                                     ">

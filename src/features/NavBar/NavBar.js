@@ -14,8 +14,7 @@ function NavBar({ onSearchBarSubmit, onToggle, onApplyFilters }) {
                 <nav className="flex items-center
                                 h-[75px]
                                 ">
-                    <div className="flex items-center
-                                    
+                    <a href="/" className="flex items-center
                                     ">
                         <h1 className="heading-2 hidden lg:flex">
                             <span className="text-blue-950">Guardian</span>
@@ -25,7 +24,7 @@ function NavBar({ onSearchBarSubmit, onToggle, onApplyFilters }) {
                             <span className="text-blue-950">G</span>
                             <span className="text-blue-400">F</span>
                         </h1>
-                    </div>
+                    </a>
                     <div className="flex items-center justify-stretch flex-1
                                     h-[40px] lg:-ml-7 md:ml-[20px]
                                     ">
