@@ -4,11 +4,16 @@ import FilteredArticleList from '../FilteredArticleList/FilteredArticleList';
 import { MdExpandCircleDown } from 'react-icons/md';
 import { useSelector } from 'react-redux';
 
-function Feed({ feed }) {
+function Feed({ feed, query }) {
     const filters = useSelector(state => state.filters.selectedFilters);
-    console.log(filters);
-    const filtersApplied = filters.length > 0;
-    console.log(filtersApplied);
+
+    let feedShell;
+    if(filters.length > 0) {
+        feedShell = <FilteredArticleList feed={feed}/>
+    } else if (query.length > 0) {
+        feedShell = <ArticleList feed={feed} query={query}/>
+    };
+
     return (
         <div className="bg-neutral-100 w-full h-full
                         opacity-100 min-h-[350px]
@@ -16,11 +21,11 @@ function Feed({ feed }) {
             <div className="grid lg:grid-cols-[1fr,minmax(768px,1024px),1fr] md:grid-cols-[1fr,8fr,1fr] sm:grid-cols-[1fr,8fr,1fr]"> {/* Feed Grid */}
                 <div className="col-start-2 col-end-3">
                     <div className="pt-28">
-                        {filtersApplied ? <FilteredArticleList feed={feed}/> : <ArticleList feed={feed}/>}
+                        {feedShell}
                         <div className="flex top-4 justify-center
                                     -mt-2 mb-8
                                     "> {/* ShowMoreResults Container */}
-                            {feed.feed.length > 0 ? <button className="flex items-center justify-center button-yellow
+                            {filters.length > 0 || query.length > 0 ? <button className="flex items-center justify-center button-yellow
                                                 hover:opacity-100 opacity-90 transition-all cursor-pointer ease-linear
                                                 w-40
                                                 ">

@@ -3,7 +3,7 @@ import { FaGithub, FaLinkedin } from 'react-icons/fa';
 
 function Footer() {
     return (
-        <footer className="bg-neutral-200 h-32
+        <footer className="bg-neutral-200 h-40
                             ">
             <div className="grid grid-cols-5">
                 <div className="flex mt-5 ml-10">

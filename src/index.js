@@ -7,8 +7,10 @@ import { store } from './app/store';
 import { Provider } from 'react-redux';
 
 async function deferRender() {
-  const { worker } = await import('./mocks/browser');
-  return worker.start();
+  if (process.env.NODE_ENV === 'development') {
+    const { worker } = await import('./mocks/browser');
+    return worker.start();
+  }
 };
 
 

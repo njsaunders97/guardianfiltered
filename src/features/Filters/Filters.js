@@ -13,6 +13,7 @@ import { setFeed } from '../Feed/feedSlice';
 function Filters({ showDropdown }) {
     const filters = useSelector(state => state.filters.selectedFilters);
     const dispatch = useDispatch();
+    const feed = useSelector(state => state.feed);
 
     const handleButtonToggle = (name) => {
         console.log('Before update: ', filters)
@@ -28,12 +29,13 @@ function Filters({ showDropdown }) {
     function handleApplyFilters() {
         console.log(filters);
         console.log('filters handled!');
-        if(filters.length < 0) {
+        if(filters.length > 0) {
             dispatch(setFeed([]));
-        } else {
-            dispatch(setFeed([]));
+            console.log(feed.feed);
             dispatch(fetchFilterResults(filters));
-        }
+        } else if (filters.length === 0) {
+            dispatch(setFeed([]));
+        };
     }
 
     return (

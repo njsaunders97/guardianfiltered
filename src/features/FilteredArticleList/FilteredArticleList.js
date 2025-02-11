@@ -9,7 +9,7 @@ function FilteredArticleList({ feed }) {
     return (
         <div>
             <div className="col-span-2 pb-14">
-                {feed.feed.length > 0 || filters.length > 0 ? feed.feed.map(article => (
+                {filters.length > 0 ? feed.feed.map(article => (
                     <FilteredArticle 
                     article={article}
                     key={article.id}
