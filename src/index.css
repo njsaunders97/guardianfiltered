@@ -4,10 +4,10 @@
 
 @layer components {
     .article-text {
-        @apply font-merriweather text-sm opacity-50;
+        @apply font-roboto text-sm font-light opacity-50;
     }
     .heading-1 {
-        @apply font-merriweather text-3xl;
+        @apply font-merriweather text-2xl;
     }
     .heading-2 {
         @apply font-merriweather text-2xl;
@@ -17,6 +17,12 @@
     }
     .heading-3 {
         @apply font-roboto text-base font-light text-blue-400;
+    }
+    .byline {
+        @apply font-merriweather text-sm font-light text-blue-400;   
+    }
+    .standfirst {
+        @apply font-merriweather text-sm font-light text-blue-500;   
     }
     .searchbar {
         @apply rounded-xl font-roboto font-light bg-neutral-50 border-blue-950;
