@@ -13,9 +13,23 @@ import { setFeed } from '../features/Feed/feedSlice';
 
 export const fetchSearchResults = createAsyncThunk(
   'feed/setFeed',
-  async(query, thunkAPI) => {
+  async({query, filters}, thunkAPI) => {
+
+    let url;
+
+    if(filters.length > 0) {
+      const formattedFilters = filters.map(filter => filter.toLowerCase()).join(',');
+      console.log(formattedFilters);
+      url = `https://content.guardianapis.com/search?q=${query}&section=${formattedFilters}&from-date=2025-01-01&orderBy=newest&show-fields=all&show-elements=all&show-references=all&api-key=d53eea4a-037a-4040-900e-389d2a2166b9`;
+    } else {
+      url = `https://content.guardianapis.com/search?q=${query}&from-date=2025-01-01&orderBy=newest&show-fields=all&show-elements=all&show-references=all&api-key=d53eea4a-037a-4040-900e-389d2a2166b9`;
+    };
+
+    console.log(filters);
+    console.log(url);
+
    try { 
-      const response = await fetch(`https://content.guardianapis.com/search?q=${query}&from-date=2025-01-01&orderBy=newest&show-fields=all&show-elements=all&show-references=all&api-key=d53eea4a-037a-4040-900e-389d2a2166b9`);
+      const response = await fetch(url);
       if(!response.ok) {
         return thunkAPI.rejectWithValue('Failed to fetch data');
       }
@@ -27,21 +41,21 @@ export const fetchSearchResults = createAsyncThunk(
   }
 );
 
-export const fetchFilterResults = createAsyncThunk(
-  'feed/setFeed',
-  async(filters, thunkAPI) => {
-   try { 
-      const response = await fetch(`https://content.guardianapis.com/sections?q=${filters.join(',')}&api-key=d53eea4a-037a-4040-900e-389d2a2166b9`);
-      if(!response.ok) {
-        return thunkAPI.rejectWithValue('Failed to fetch data');
-      }
-      const data = await response.json();
-      return data.response.results;
-    } catch (error) {
-      return thunkAPI.rejectWithValue('An error occurred');
-    }
-  } 
-);
+// export const fetchFilterResults = createAsyncThunk(
+//   'feed/setFeed',
+//   async(filters, thunkAPI) => {
+//    try { 
+//       const response = await fetch(`https://content.guardianapis.com/sections?q=${filters.join(',')}&api-key=d53eea4a-037a-4040-900e-389d2a2166b9`);
+//       if(!response.ok) {
+//         return thunkAPI.rejectWithValue('Failed to fetch data');
+//       }
+//       const data = await response.json();
+//       return data.response.results;
+//     } catch (error) {
+//       return thunkAPI.rejectWithValue('An error occurred');
+//     }
+//   } 
+// );
 
 
 function App() {
@@ -53,9 +67,9 @@ function App() {
   const handleToggle = useCallback(() => setShowDropdown(prevShowDropdown => !prevShowDropdown),[]);
 
   // ensures that the most current query is registered in state
-  useEffect(() => {
-    console.log(`Current query: ${query}`);
-  }, [query]);
+  // useEffect(() => {
+  //   console.log(`Current query: ${query}`);
+  // }, [query]);
 
 // <<<<<<<< SEARCHBAR/SEARCH RESULTS >>>>>>>> //
 
@@ -69,13 +83,11 @@ function App() {
     e.preventDefault();
     dispatch(setFeed([]));
     if (query.length > 0) {
-      dispatch(fetchSearchResults(query));
+      dispatch(fetchSearchResults({query, filters}));
     } else {
       dispatch(setFeed([]));
     }
     console.log('Called fetchSearchResults');
-    console.log(feed);
-    console.log(filters);
   }; 
 
   return (
@@ -88,7 +100,6 @@ function App() {
         {feed.feed.length > 0 ? // display feed is there is data present in feed
         <Feed 
         feed={feed}
-        query={query}
         /> 
         : <Fallback />}
         <Footer />

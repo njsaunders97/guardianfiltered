@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { addFilter, removeFilter } from './filtersSlice';
 import { FaFilter } from 'react-icons/fa';
-import { fetchFilterResults } from '../../app/App';
+import { fetchSearchResults } from '../../app/App';
 import { setFeed } from '../Feed/feedSlice';
 
 // note that scope right now doesn't including dynamically loading individual filters from API.
@@ -12,8 +12,9 @@ import { setFeed } from '../Feed/feedSlice';
 
 function Filters({ showDropdown }) {
     const filters = useSelector(state => state.filters.selectedFilters);
-    const dispatch = useDispatch();
+    const query = useSelector(state => state.searchBar.query);
     const feed = useSelector(state => state.feed);
+    const dispatch = useDispatch();
 
     const handleButtonToggle = (name) => {
         console.log('Before update: ', filters)
@@ -31,11 +32,9 @@ function Filters({ showDropdown }) {
         console.log('filters handled!');
         if(filters.length > 0) {
             dispatch(setFeed([]));
-            console.log(feed.feed);
-            dispatch(fetchFilterResults(filters));
-        } else if (filters.length === 0) {
-            dispatch(setFeed([]));
-        };
+            dispatch(fetchSearchResults({query, filters}));
+            console.log('fetchSearchResults called with filters');
+        } 
     }
 
     return (
@@ -46,10 +45,10 @@ function Filters({ showDropdown }) {
                             ">
                 <div className="flex flex-wrap justify-around items-center w-full my-5">
                     {filters.includes('News') ? <FilterButtonSelected onClick={handleButtonToggle} name='News'/> : <FilterButtonUnselected onClick={handleButtonToggle} name='News'/>}
-                    {filters.includes('Opinion') ? <FilterButtonSelected onClick={handleButtonToggle} name='Opinion'/> : <FilterButtonUnselected onClick={handleButtonToggle} name='Opinion'/>}
+                    {filters.includes('Politics') ? <FilterButtonSelected onClick={handleButtonToggle} name='Politics'/> : <FilterButtonUnselected onClick={handleButtonToggle} name='Politics'/>}
                     {filters.includes('Sport') ? <FilterButtonSelected onClick={handleButtonToggle} name='Sport'/> : <FilterButtonUnselected onClick={handleButtonToggle} name='Sport'/>}
-                    {filters.includes('Culture') ? <FilterButtonSelected onClick={handleButtonToggle} name='Culture'/> : <FilterButtonUnselected onClick={handleButtonToggle} name='Culture'/>}
-                    {filters.includes('Lifestyle') ? <FilterButtonSelected onClick={handleButtonToggle} name='Lifestyle'/> : <FilterButtonUnselected onClick={handleButtonToggle} name='Lifestyle'/>}
+                    {filters.includes('Film') ? <FilterButtonSelected onClick={handleButtonToggle} name='Film'/> : <FilterButtonUnselected onClick={handleButtonToggle} name='Film'/>}
+                    {filters.includes('Science') ? <FilterButtonSelected onClick={handleButtonToggle} name='Science'/> : <FilterButtonUnselected onClick={handleButtonToggle} name='Science'/>}
                     <ApplyFilters onClick={handleApplyFilters} />
                 </div>
                 <div className="">

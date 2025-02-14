@@ -24,7 +24,7 @@ function Fallback() {
                                 <span className="font-semibold"> what you want </span>
                                 <span>to read.</span>
                             </h3>
-                            <p className="text-blue-950 heading-3">Tailor your Guardian feed to your taste via search terms or category filters above.</p>
+                            <p className="text-blue-950 heading-3">Tailor your Guardian feed to your taste via search terms and category filters above.</p>
                             <span className="flex justify-center
                                             mt-4
                                             ">

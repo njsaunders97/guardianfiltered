@@ -4,7 +4,6 @@ import { FaReadme } from 'react-icons/fa';
 import { GrArticle } from 'react-icons/gr';
 
 function Article({ article }) {
-    console.log(article);
     return (
         <div data-testid="article-element" className="relative text-center
                         rounded-md shadow-sm bg-white
